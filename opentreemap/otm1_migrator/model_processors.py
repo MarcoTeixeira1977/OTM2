@@ -137,8 +137,8 @@ def process_userprofile(migration_rules, migration_event,
         return None
 
     user = User.objects.get(pk=model_dict['fields']['user'])
-
-    photo_full_path = os.path.join(photo_basepath, photo_path)
+    # photo basepath was None, so the following is hard-coded
+    photo_full_path = os.path.join('/storage/media/', photo_path)
     try:
         photo_data = open(photo_full_path)
     except IOError:
@@ -272,6 +272,7 @@ def _base_process_comment(migration_rules, migration_event,
     try:
         new_object_id = relic_ids[content_type.model][old_object_id]
     except KeyError:
+        return None  # work around for Tampa
         raise MigrationException("threadedcomment dependency not met. "
                                  "did you import %s yet?"
                                  % comment_obj.content_type.model)
