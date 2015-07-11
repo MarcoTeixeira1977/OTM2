@@ -4,13 +4,13 @@ $base-font-family               : 'Open Sans', 'Roboto', 'Helvetica Neue', Helve
 $base-font-size                 : 62.5%;
 
 // Colors
-$primary-color                  : #8baa3d !default; // OTM Green color
-$secondary-color                : #56abb2 !default; // OTM Teal color
+$primary-color                  : #337989 !default; // OTM Green color = 8baa3d
+$secondary-color                : #92B648 !default; // OTM Teal color = 56abb2
 $success-color                  : #add142; // OTM Lime Green color
 $warning-color                  : #e0c122; // Warning color
 $alert-color                    : #df4425; // OTM Red color
 
-$navbar-color                   : #42424a; // Navbar gray color
+$navbar-color                   : #243946; // Navbar gray color = 42424a
 $well-color                     : #d1d2d4; // Well gray color
 
 $main-text-color                : #231f20; // Black text color
@@ -19,7 +19,7 @@ $light-gray-color               : #f1f2f2; // Light gray color
 
 // Button Colors
 $button-default                 : #f1f2f2;
-$button-primary                 : #8baa3d;
+$button-primary                 : #337989; // original = 8baa3d
 $button-success                 : #add142;
 $button-info                    : #5bc0de;
 $button-warning                 : #f0ad4e;
