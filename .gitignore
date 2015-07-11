@@ -18,8 +18,6 @@ opentreemap/la
 opentreemap/map_features
 opentreemap/modeling
 opentreemap/super_admin
-opentreemap/treemap/static/js/
-opentreemap/treemap/static/css/
 prototypes/static
 
 # .mo files are compiled, binary language files created
