@@ -56550,7 +56550,7 @@ function getLayerURL(config, layer, extension) {
         config.instance.rev +
         //'/database/otm/table/' + layer + '/{z}/{x}/{y}.' +
         '/database/otm2/table/' + layer + '/{z}/{x}/{y}.' +
-        extension + '?instance_id=' + config.instance.id;
+        extension + '?instance_id=1&dbname=otm2';
 }
 
 function getPlotLayerURL(config, extension) {
