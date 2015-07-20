@@ -59,7 +59,7 @@ MIGRATION_RULES = {
         'dependencies': {'species': 'species',
                          'user': 'steward_user',
                          'plot': 'plot'},
-        'common_fields': {'readonly', 'canopy_height',
+        'common_fields': {'id', 'readonly', 'canopy_height',
                           'date_planted', 'date_removed', 'height'},
         'renamed_fields': {'dbh': 'diameter'},
         'removed_fields': {'tree_owner', 'steward_name', 'sponsor',
