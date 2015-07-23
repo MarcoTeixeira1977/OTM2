@@ -38,7 +38,7 @@ def save_species(migration_rules, migration_event,
      AND instance_id=%(instance_id)s)
     """ % {'instance_id': instance.pk})
 
-    if len(list(non_migrated_species)) > 0:
+    if len(list(non_migrated_species)) > 0 and False:
         raise MigrationException("You cannot migrate species, at all, "
                                  "if any species for this instance are "
                                  "not the result of a migration. This is "
@@ -165,7 +165,7 @@ def save_treephoto(migration_rules, migration_event, treephoto_path,
         treephoto_obj = None
         pk = models.UNBOUND_MODEL_ID
     else:
-        image = open(os.path.join(treephoto_path,
+        image = open(os.path.join("/storage/media/", #treephoto_path,
                                   model_dict['fields']['photo']))
         treephoto_obj.set_image(image)
         treephoto_obj.map_feature_id = (Tree
