@@ -282,8 +282,8 @@ REGISTRATION_EMAIL_HTML = False
 STORAGE_UNITS = {}
 DISPLAY_DEFAULTS = {
     'plot': {
-        'width':  {'units': 'in', 'digits': 1},
-        'length': {'units': 'in', 'digits': 1},
+        'width':  {'units': 'ft', 'digits': 1},
+        'length': {'units': 'ft', 'digits': 1},
     },
     'tree': {
         'diameter':      {'units': 'in', 'digits': 1},

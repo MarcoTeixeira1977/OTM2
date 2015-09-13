@@ -768,6 +768,25 @@ class Plot(MapFeature):
 
     owner_orig_id = models.CharField(max_length=255, null=True, blank=True)
 
+    powerline_conflict_potential = models.NullBooleanField(null=True)
+
+    choices_sidewalks = [ (0, "Minor or No Damage"),
+                          (1, "Raised More Than 3/4 Inch") ]
+
+    sidewalk_damage = models.NullBooleanField(null=True) 
+
+    choices_plot_types =  [
+                ("1", "Well/Pit"),
+                ("2", "Median/Island"),
+                ("3", "Tree Lawn"),
+                ("4", "Park"),
+                ("5", "Planter"),
+                ("6", "Other"),
+                ("7", "Yard"),
+                ("8", "Natural Area") ]
+
+    plot_type = models.CharField(max_length=256, null=True, blank=True, choices=choices_plot_types)
+
     objects = GeoHStoreUDFManager()
     is_editable = True
 
@@ -861,7 +880,18 @@ class Tree(Convertible, UDFModel, PendingAuditable):
     """
     Represents a single tree, belonging to an instance
     """
+
+    canopy_conditions = [
+                ("1", "Full - No Gaps"),
+                ("2", "Small Gaps (up to 25% missing)"),
+                ("3", "Moderate Gaps (up to 50% missing)"),
+                ("4", "Large Gaps (up to 75% missing)"),
+                ("5", "Little or None (up to 100% missing)") ]
+
     instance = models.ForeignKey(Instance)
+
+    # City of Tampa's Tree Number
+    cot_tree_num = models.PositiveIntegerField(null=True, blank=True)
 
     plot = models.ForeignKey(Plot)
     species = models.ForeignKey(Species, null=True, blank=True,
@@ -874,6 +904,12 @@ class Tree(Convertible, UDFModel, PendingAuditable):
                                help_text=_("Tree Height"))
     canopy_height = models.FloatField(null=True, blank=True,
                                       help_text=_("Canopy Height"))
+
+    canopy_condition = models.CharField(max_length=256, 
+                                        null=True, 
+                                        blank=True, 
+                                        choices=canopy_conditions)
+
     date_planted = models.DateField(null=True, blank=True,
                                     help_text=_("Date Planted"))
     date_removed = models.DateField(null=True, blank=True,

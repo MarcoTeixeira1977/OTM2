@@ -30,6 +30,12 @@
         {% endif %}
         </td>
       </tr>
+      <!-- New fields for COTA -->
+      <tr>
+          <td>City of Tampa Tree #</td>
+          <td>{{ tree.cot_tree_num  }}</td>
+      </tr>
+      <!-- end New field -->
       {% endusercanread %}
       {# The "plot-species" label is used as an id prefix in "field/species_tr.html" #}
       {% field "plot-species" from "tree.species" for request.user withtemplate "treemap/field/species_tr.html" %}
@@ -43,6 +49,15 @@
       {% field planted from "tree.date_planted" for request.user withtemplate "treemap/field/tr.html" %}
       {% trans "Date Removed" as removed %}
       {% field removed from "tree.date_removed" for request.user withtemplate "treemap/field/tr.html" %}
+      <!-- New fields for COTA -->
+      <tr>
+          <td>Canopy Condition</td>
+          <td>{{ tree.canopy_condition  }}</td>
+      </tr>
+          <td>Project</td>
+          <td>{{ tree.project  }}</td>
+      </tr>
+      <!-- end New field -->
       {% for label, udf in tree.scalar_udf_names_and_fields %}
         {% field label from udf for request.user withtemplate "treemap/field/tr.html" %}
       {% endfor %}
@@ -86,6 +101,17 @@
     {% field zip from "plot.address_zip" for request.user withtemplate "treemap/field/tr.html" %}
     {% trans "Original Owner Id" as oid %}
     {% field oid from "plot.owner_orig_id" for request.user withtemplate "treemap/field/tr.html" %}
+      <tr>
+          <td>Plot type</td>
+          <td>{{ plot.type }}</td>
+      </tr>
+          <td>Sidewalk damage</td>
+          <td>{{ plot.sidewalk_damage }}</td>
+      </tr>
+      <tr>
+          <td>Powerlines?</td>
+          <td>{% if plot.powerline_conflict_potential %}True{% endif %}</td>
+      </tr>
     <!-- Hiding readonly field temporarily -->
     <!-- See github #379 and #772 for more details -->
     <!-- {% trans "Read Only" as readonly %} -->
