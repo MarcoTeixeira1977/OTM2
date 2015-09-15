@@ -893,6 +893,8 @@ class Tree(Convertible, UDFModel, PendingAuditable):
     # City of Tampa's Tree Number
     cot_tree_num = models.PositiveIntegerField(null=True, blank=True)
 
+    data_owner = models.ForeignKey(User, related_name="owner", null=True, blank=True)
+
     plot = models.ForeignKey(Plot)
     species = models.ForeignKey(Species, null=True, blank=True,
                                 help_text=_("Species"))

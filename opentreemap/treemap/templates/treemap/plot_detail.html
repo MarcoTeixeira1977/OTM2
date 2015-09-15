@@ -32,7 +32,7 @@
       </tr>
       <!-- New fields for COTA -->
       <tr>
-          <td>City of Tampa Tree #</td>
+          <td>Tree Number*</td>
           <td>{{ tree.cot_tree_num  }}</td>
       </tr>
       <!-- end New field -->
@@ -49,15 +49,19 @@
       {% field planted from "tree.date_planted" for request.user withtemplate "treemap/field/tr.html" %}
       {% trans "Date Removed" as removed %}
       {% field removed from "tree.date_removed" for request.user withtemplate "treemap/field/tr.html" %}
-      <!-- New fields for COTA -->
+      <!-- new fields for COTA -->
       <tr>
-          <td>Canopy Condition</td>
+          <td>Canopy Condition**</td>
           <td>{{ tree.canopy_condition  }}</td>
       </tr>
-          <td>Project</td>
+          <td>Project**</td>
           <td>{{ tree.project  }}</td>
       </tr>
-      <!-- end New field -->
+      </tr>
+          <td>Data source**</td>
+          <td>{{ tree.data_owner }}</td>
+      </tr>
+      <!-- end new fields for COTA -->
       {% for label, udf in tree.scalar_udf_names_and_fields %}
         {% field label from udf for request.user withtemplate "treemap/field/tr.html" %}
       {% endfor %}
@@ -102,14 +106,14 @@
     {% trans "Original Owner Id" as oid %}
     {% field oid from "plot.owner_orig_id" for request.user withtemplate "treemap/field/tr.html" %}
       <tr>
-          <td>Plot type</td>
+          <td>Plot type**</td>
           <td>{{ plot.type }}</td>
       </tr>
-          <td>Sidewalk damage</td>
+          <td>Sidewalk damage**</td>
           <td>{{ plot.sidewalk_damage }}</td>
       </tr>
       <tr>
-          <td>Powerlines?</td>
+          <td>Powerlines**</td>
           <td>{% if plot.powerline_conflict_potential %}True{% endif %}</td>
       </tr>
     <!-- Hiding readonly field temporarily -->
