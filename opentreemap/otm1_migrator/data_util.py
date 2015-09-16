@@ -19,6 +19,9 @@ def validate_model_dict(config, model_name, data_dict):
     Makes sure the fields specified in the config global
     account for all of the provided data
     """
+    print config
+    print model_name
+    print data_dict
     common_fields = config[model_name].get('common_fields', set())
     renamed_fields = set(config[model_name].get('renamed_fields', {}).keys())
     removed_fields = config[model_name].get('removed_fields', set())

@@ -89,6 +89,10 @@ MIGRATION_RULES['species']['missing_fields'].add('other_part_of_name')
 
 MIGRATION_RULES['tree']['renamed_fields']['id']='cota_id'
 
+
+MIGRATION_RULES['tree']['common_fields'].add('data_owner')
+MIGRATION_RULES['tree']['removed_fields'].remove('data_owner')
+
 #MIGRATION_RULES['tree']['removed_fields'].remove('pests')
 #MIGRATION_RULES['tree']['removed_fields'].remove('url')
 

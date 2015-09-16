@@ -222,7 +222,8 @@ MIGRATION_RULES = {
 # This is a concession. It would be better, but more difficult, if
 # users of MIGRATION_RULES would resolve a priority order based on
 # dependencies in order to make this more DRY.
-PRIORITY_ORDER = ['user', 'contenttype', 'species', 'plot', 'tree']
+#PRIORITY_ORDER = ['user', 'contenttype', 'species', 'plot', 'tree']
+PRIORITY_ORDER = ['user',]# 'contenttype', 'species', 'plot', 'tree']
 MODEL_ORDER = (PRIORITY_ORDER +
                [model for model in MIGRATION_RULES
                 if model not in PRIORITY_ORDER])
