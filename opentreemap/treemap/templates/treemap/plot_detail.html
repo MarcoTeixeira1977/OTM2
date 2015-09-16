@@ -122,9 +122,22 @@
     <!-- {% field readonly from "plot.readonly" for request.user withtemplate "treemap/field/tr.html" with extra='style="display:none"' %} -->
     {% for label, udf in plot.scalar_udf_names_and_fields %}
       {% field label from udf for request.user withtemplate "treemap/field/tr.html" %}
-    {% endfor %}
+      {% endfor %}
+
+      <tr>
+          <td>
+            <p id="notes" class="text-muted">
+             <em>
+* Tree Number from Tampa Tree Map version 1</br>
+** Deprecated in Tampa Tree Map version 2</br>
+             </em>
+            </p>
+         </td>
+         <td></td>
+      </tr>
   </tbody>
 </table>
+
 
 {# Render collection UDF fields for the Plot  #}
 {% for udf in plot.collection_udfs %}
@@ -164,6 +177,7 @@
   {% trans "You are about to delete this planting site. Once deleted, it will not be possible to view the details of this planting site or the trees it has contained in the past. Are you sure you want to continue?" %}
 </p>
 {% endblock %}
+
 
 
 {% block scripts %}
