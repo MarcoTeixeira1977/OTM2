@@ -46,13 +46,20 @@ DEFAULT_MOBILE_SEARCH_FIELDS = {
 DEFAULT_MOBILE_API_FIELDS = (
     {'header': ugettext_noop('Tree Information'),
      'model': 'tree',
-     'field_keys': ['tree.species', 'tree.diameter',
-                    'tree.height', 'tree.date_planted']},
+     'field_keys': ['tree.species', 
+                    'tree.diameter',
+                    'tree.height',
+                    'tree.canopy_height',
+                    'tree.date_planted']},
     {'header': ugettext_noop('Planting Site Information'),
      'model': 'plot',
-     'field_keys': ['plot.width', 'plot.length']},
+     'field_keys': ['plot.width', 
+                    'plot.length', 
+                    'plot.sidewalk_damage'],
+     'collection_udf_keys': ['plot.udf:Powerlines Overhead']},
     {'header': ugettext_noop('Stewardship'),
-     'collection_udf_keys': ['plot.udf:Stewardship', 'tree.udf:Stewardship'],
+     'collection_udf_keys': ['plot.udf:Stewardship', 
+                             'tree.udf:Stewardship'],
      'sort_key': 'Date'}
 )
 
