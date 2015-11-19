@@ -35,6 +35,10 @@
           <td>OTM1 Tree Number*</td>
           <td>{{ tree.cot_tree_num  }}</td>
       </tr>
+      <tr>
+          <td><a href="http://treefailure.org/tree/{{ tree.pk|unlocalize }}">Edit Tree Risks*</a></td>
+          <td></td>
+      </tr>
       <!-- end New field -->
       {% endusercanread %}
       {# The "plot-species" label is used as an id prefix in "field/species_tr.html" #}
