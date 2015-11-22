@@ -53,19 +53,6 @@
       {% field planted from "tree.date_planted" for request.user withtemplate "treemap/field/tr.html" %}
       {% trans "Date Removed" as removed %}
       {% field removed from "tree.date_removed" for request.user withtemplate "treemap/field/tr.html" %}
-      <!-- new fields for COTA -->
-      <tr>
-          <td>Canopy Condition**</td>
-          <td>{{ tree.canopy_condition  }}</td>
-      </tr>
-          <td>Project**</td>
-          <td>{{ tree.project  }}</td>
-      </tr>
-      </tr>
-          <td>Data source**</td>
-          <td>{{ tree.data_owner }}</td>
-      </tr>
-      <!-- end new fields for COTA -->
       {% for label, udf in tree.scalar_udf_names_and_fields %}
         {% field label from udf for request.user withtemplate "treemap/field/tr.html" %}
       {% endfor %}
@@ -109,17 +96,6 @@
     {% field zip from "plot.address_zip" for request.user withtemplate "treemap/field/tr.html" %}
     {% trans "Original Owner Id" as oid %}
     {% field oid from "plot.owner_orig_id" for request.user withtemplate "treemap/field/tr.html" %}
-      <tr>
-          <td>Plot type**</td>
-          <td>{{ plot.type }}</td>
-      </tr>
-          <td>Sidewalk damage**</td>
-          <td>{{ plot.sidewalk_damage }}</td>
-      </tr>
-      <tr>
-          <td>Powerlines**</td>
-          <td>{% if plot.powerline_conflict_potential %}True{% endif %}</td>
-      </tr>
     <!-- Hiding readonly field temporarily -->
     <!-- See github #379 and #772 for more details -->
     <!-- {% trans "Read Only" as readonly %} -->
@@ -128,17 +104,6 @@
       {% field label from udf for request.user withtemplate "treemap/field/tr.html" %}
       {% endfor %}
 
-      <tr>
-          <td>
-            <p id="notes" class="text-muted">
-             <em>
-* Tree Number from Tampa Tree Map version 1</br>
-** Deprecated in Tampa Tree Map version 2</br>
-             </em>
-            </p>
-         </td>
-         <td></td>
-      </tr>
   </tbody>
 </table>
 
@@ -147,6 +112,13 @@
 {% for udf in plot.collection_udfs %}
   {% with values=plot.udfs|get:udf.name title_prefix=udf.model_type|display_name %}
     {% include "treemap/partials/collectionudf.html" with udf=udf title_prefix=title_prefix model=plot values=values %}
+  {% endwith %}
+{% endfor %}
+
+
+{% for udf in plot.editable_udf_models %}
+  {% with values=plot.udfs|get:udf.name title_prefix=udf.model_type|display_name %}
+    {% include "treemap/partials/udf_edit_field.html" with udf=udf title_prefix=title_prefix model=plot values=values %}
   {% endwith %}
 {% endfor %}
 
