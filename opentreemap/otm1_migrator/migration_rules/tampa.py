@@ -1,3 +1,4 @@
+# 
 from otm1_migrator.migration_rules.standard_otm1 import MIGRATION_RULES
 
 from treemap.models import ITreeCodeOverride, ITreeRegion, User
@@ -20,7 +21,7 @@ UDFS = {
             'udf.name': 'Powerlines Overhead',
             'udf.choices': ['Yes', 'No', 'Unknown']
         },
-        'sidewalk_damage': {
+        'Sidewalk Damage': {
             'udf.name': 'Sidewalk Damage',
             'udf.choices': ['Minor or No Damage', 'Raised More Than 3/4 Inch']
         }
@@ -49,49 +50,27 @@ UDFS = {
 #}
 
 
-def create_override(species_obj, species_dict):
-    return species_obj
-    # below is philly
-    for region in ['NoEastXXX', 'PiedmtCLT']:
-        override = ITreeCodeOverride(
-            instance_species_id=species_obj.pk,
-            region=ITreeRegion.objects.get(code=region),
-            itree_code=species_dict['fields']['itree_code'])
-        override.save_with_user(User.system_user())
-    return species_obj
 
 #MIGRATION_RULES['species']['postsave_actions'] = (MIGRATION_RULES['species']
 #                                                  .get('postsave_actions', [])
 #                                                  + [create_override])
 
 
-def mutate_boundary(boundary_obj, boundary_dict):
-    return boundary_obj
-    # below is phully
-    otm1_fields = boundary_dict.get('fields')
-    if ((boundary_obj.name.find('County') != -1
-         or boundary_obj.name == 'Philadelphia')):
-        boundary_obj.category = 'County'
-        boundary_obj.sort_order = 1
-    elif otm1_fields['county'] == 'Philadelphia':
-        boundary_obj.category = 'Philadelphia Neighborhood'
-        boundary_obj.sort_order = 2
-    else:
-        county = otm1_fields['county']
-        boundary_obj.category = county + ' Township'
-        boundary_obj.sort_order = SORT_ORDER_INDEX[county]
-    return boundary_obj
 
-
+# Species
 MIGRATION_RULES['species']['removed_fields'].remove('family')
 MIGRATION_RULES['species']['common_fields'].remove('other_part_of_name')
 MIGRATION_RULES['species']['missing_fields'].add('other_part_of_name')
 
+# Plot
+MIGRATION_RULES['plot']['removed_fields'].remove('powerline_conflict_potential')
+MIGRATION_RULES['plot']['common_fields'].add('powerline_conflict_potential')
+MIGRATION_RULES['plot']['sidewalk_damage'].remove('powerline_conflict_potential')
+MIGRATION_RULES['plot']['sidewalk_damage'].add('powerline_conflict_potential')
+# Tree
 MIGRATION_RULES['tree']['renamed_fields']['id']='cota_id'
-
-
-MIGRATION_RULES['tree']['common_fields'].add('data_owner')
-MIGRATION_RULES['tree']['removed_fields'].remove('data_owner')
+MIGRATION_RULES['tree']['common_fields'].add('canopy_condition')
+MIGRATION_RULES['tree']['removed_fields'].remove('canopy_condition')
 
 #MIGRATION_RULES['tree']['removed_fields'].remove('pests')
 #MIGRATION_RULES['tree']['removed_fields'].remove('url')
