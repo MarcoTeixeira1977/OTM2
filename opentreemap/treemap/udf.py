@@ -3,6 +3,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 from __future__ import division
 
+import sys
 import json
 import copy
 import re
@@ -1288,7 +1289,9 @@ class UDFModel(UserTrackable, models.Model):
                         'Invalid user defined field name')]
 
         if errors:
-            raise ValidationError(errors)
+            #print errors
+            sys.exc_clear() # 
+            #raise ValidationError(errors)
 
     def clean_fields(self, exclude):
         exclude = exclude + ['udfs']
