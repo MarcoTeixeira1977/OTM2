@@ -6,6 +6,8 @@
 
 #OpenTreeMap 2
 
+Edit by Keith Bornhorst (testing git access)
+
 ##Questions?
 
 Join the user mailing list and let us know: 
